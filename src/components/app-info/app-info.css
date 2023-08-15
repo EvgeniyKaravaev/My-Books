@@ -1,0 +1,8 @@
+.app-info {
+
+    padding: 25px;
+    background-color: chocolate;
+    color: bisque;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, .15);
+    border-radius: 4px;
+}
