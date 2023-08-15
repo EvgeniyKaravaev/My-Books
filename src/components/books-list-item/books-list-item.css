@@ -1,0 +1,71 @@
+.list-group-item {
+
+    padding: 15px 20px;
+    border-bottom: 1px solid hsl(194, 100%, 51%);
+
+}
+
+.list-group-item:last-child {
+    
+    border-bottom: none;
+
+}
+
+.list-group-item span {
+
+    line-height: 35px;
+    font-size: 20px;
+    cursor: pointer;
+    min-width: 550px;
+
+}
+
+.list-group-item input {
+
+    line-height: 35px;
+    font-size: 20px;
+    border: 0;
+    text-align: center;
+
+}
+
+.list-group-item button {
+
+    width: 35px;
+    height: 35px;
+    margin: 3px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.list-group-item .btn-cookie {
+
+    color: hwb(28 13% 8%);
+
+}
+
+.list-group-item .btn-trash {
+
+    color: #0657da;
+
+}
+
+.list-group-item.like .fa-star {
+
+    opacity: 1;
+    transform: translateX(0px);
+
+}
+
+.list-group-item.increase .list-group-item-label, .list-group-item.increase .list-group-item-input {
+
+    color: #169d0a;
+
+}
+
+.list-group-item.increase .btn-star {
+
+    color: gold;
+}
