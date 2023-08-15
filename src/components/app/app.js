@@ -7,20 +7,20 @@ import AppFilter from '../app-filter/app-filter';
 import BooksList from '../books-list/books-list';
 import BooksAddForm from '../books-add-form/books-add-form';
 
-function App () {
+function App() {
 
     return (
         <div className="app">
-            <AppInfo/>
+            <AppInfo />
 
             <div className='search-panel'>
-                <SearchPanel/>
-                <AppFilter/>
+                <SearchPanel />
+                <AppFilter />
             </div>
 
-            <BooksList/>
+            <BooksList />
 
-            <BooksAddForm/>
+            <BooksAddForm />
 
         </div>
 

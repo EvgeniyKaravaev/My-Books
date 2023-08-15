@@ -8,10 +8,10 @@ const BooksList = () => {
     return (
 
         <ul className="app-list list-group">
-            <BooksListItem/>
-            <BooksListItem/>
-            <BooksListItem/>
-            <BooksListItem/>
+            <BooksListItem />
+            <BooksListItem />
+            <BooksListItem />
+            <BooksListItem />
         </ul>
     );
 }
