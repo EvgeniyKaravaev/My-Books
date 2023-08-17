@@ -9,6 +9,14 @@ import BooksAddForm from '../books-add-form/books-add-form';
 
 function App() {
 
+    const book = [
+        { titleName: "Сказки А.С.Пушкина", price: 150, increase: true},
+        { titleName: "Сказки Братьев Гримм", price: 450, increase: false},
+        { titleName: "Русские народные сказки", price: 100, increase: true},
+        { titleName: "Азбука животных", price: 50, increase: true},
+
+    ];
+
     return (
         <div className="app">
             <AppInfo />
@@ -18,7 +26,7 @@ function App() {
                 <AppFilter />
             </div>
 
-            <BooksList />
+            <BooksList book={book} />
 
             <BooksAddForm />
 

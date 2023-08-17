@@ -1,14 +1,20 @@
 import './books-list-item.css'
 
-const BooksListItem = () => {
+const BooksListItem = ({titleName, price, increase}) => {
+
+    let classNames = 'list-group-item d-flex justify-content-beetwen';
+
+    if(increase){
+        classNames += ' increase';
+    }
 
     return (
 
-        <li className="list-group-item d-flex justify-content-beetwen">
+        <li className = {classNames}>
 
-            <span className="list-group-item-label">Братья Гримм</span>
+            <span className="list-group-item-label">{titleName}</span>
 
-            <input type="text" className="list-group-item-input" defaultValue='1000P' />
+            <input type="text" className="list-group-item-input" defaultValue={price + 'P'} />
 
             <div className="d-flex justify-content-center align-items-center">
 
