@@ -8,11 +8,8 @@ class BooksListItem extends Component{
         super(props);
 
         this.state = {
-
             increase: false,
-
             like: false
-
         }
     }
 
@@ -31,19 +28,15 @@ class BooksListItem extends Component{
     render () {
 
         const {titleName, price} = this.props;
-
         const {increase, like} = this.state;
 
         let classNames = 'list-group-item d-flex justify-content-beetwen';
 
     if (increase){
-
         classNames += ' increase';
-
     }
 
     if(like) {
-
         classNames += ' like';
     } 
 
@@ -78,7 +71,6 @@ class BooksListItem extends Component{
     );
 
     }
-    
 }
 
 export default BooksListItem;
