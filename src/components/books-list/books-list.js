@@ -6,8 +6,11 @@ import BooksListItem from "../books-list-item/books-list-item";
 const BooksList = ({ book }) => {
 
     const elem = book.map(item => {
+
+        const {id, ...items} = item;
+        
         return (
-            <BooksListItem {...item} />
+            <BooksListItem key = {id} {...items} />
         );
     })
 

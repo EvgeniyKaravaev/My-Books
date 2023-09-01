@@ -1,25 +1,67 @@
+import { Component } from 'react';
+
 import './books-list-item.css'
 
-const BooksListItem = ({titleName, price, increase}) => {
+class BooksListItem extends Component{
 
-    let classNames = 'list-group-item d-flex justify-content-beetwen';
+    constructor (props) {
+        super(props);
 
-    if(increase){
-        classNames += ' increase';
+        this.state = {
+
+            increase: false,
+
+            like: false
+
+        }
     }
+
+    onIncrease = () => {
+        this.setState( ({increase}) => ({
+            increase: !increase
+        }) )
+    }
+
+    onLike = () => {
+     this.setState( ({like}) => ({
+        like: !like
+     }))   
+    }
+
+    render () {
+
+        const {titleName, price} = this.props;
+
+        const {increase, like} = this.state;
+
+        let classNames = 'list-group-item d-flex justify-content-beetwen';
+
+    if (increase){
+
+        classNames += ' increase';
+
+    }
+
+    if(like) {
+
+        classNames += ' like';
+    } 
 
     return (
 
         <li className = {classNames}>
 
-            <span className="list-group-item-label">{titleName}</span>
+            <span className="list-group-item-label"
+            onClick={this.onLike}>
+                {titleName}</span>
 
             <input type="text" className="list-group-item-input" defaultValue={price + 'P'} />
 
             <div className="d-flex justify-content-center align-items-center">
 
                 <button type="button"
-                    className="btn-cookie btn-sm">
+                    className="btn-cookie btn-sm"
+                    onClick={this.onIncrease}>
                     <i className="fas fa-cookie"></i>
                 </button>
 
@@ -35,6 +77,8 @@ const BooksListItem = ({titleName, price, increase}) => {
         </li>
     );
 
+    }
+    
 }
 
 export default BooksListItem;
