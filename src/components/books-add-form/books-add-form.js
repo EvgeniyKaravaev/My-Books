@@ -1,27 +1,58 @@
+import { Component } from 'react';
+
 import './books-add-form.css';
 
-const BooksAddForm = () => {
+class BooksAddForm extends Component{
 
-    return (
+    constructor (props) {
 
-        <div className="app-add-form">
-            <h3>Добавьте новую книгу</h3>
-            <form
-                className="add-form d-flex">
-                <input type="text"
-                    className="form-control new-post-label"
-                    placeholder="Укажите название книги" />
+        super(props);
 
-                <input type="number"
-                    className="form-control new-post-label"
-                    placeholder="Стоимость книги в рублях!" />
-                <button type="submit"
-                    className="btn btn-outline-light">Добавить</button>
+        this.state = {
 
-            </form>
+            nameBook: '',
+            priceBook: ''
 
-        </div>
-    );
+        }
+
+    }
+
+    onValueChange = (e) => {
+        this.setState({
+            [e.target.name] : e.target.value
+        })
+    }
+
+    render () {
+
+        const {nameBook, priceBook} = this.props;
+        return (
+
+            <div className="app-add-form">
+                <h3>Добавьте новую книгу</h3>
+                <form
+                    className="add-form d-flex">
+                    <input type="text"
+                        className="form-control new-post-label"
+                        placeholder="Укажите название книги" 
+                        name = "nameBook"
+                        value = {nameBook}
+                        onChange={this.onValueChange}/>
+    
+                    <input type="number"
+                        className="form-control new-post-label"
+                        placeholder="Стоимость книги в рублях!" 
+                        name = "priceBook"
+                        value = {priceBook}
+                        onChange={this.onValueChange}/>
+                    <button type="submit"
+                        className="btn btn-outline-light">Добавить</button>
+    
+                </form>
+    
+            </div>
+        );
+    }
 }
 
 export default BooksAddForm;
