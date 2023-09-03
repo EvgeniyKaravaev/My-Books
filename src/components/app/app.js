@@ -25,6 +25,8 @@ class App extends Component {
 
         }
 
+        this.maxId = 5;
+
     }
 
     deleteItem = (id)=> { 
