@@ -36,6 +36,22 @@ class App extends Component {
         })
     }
 
+    onAddItem = (titleName, price) => {
+        const newItem = {
+            id: this.maxId++,
+            titleName, 
+            price,
+            increase: false,
+            like: false
+        }
+        this.setState(({book}) => {
+            const newArr = [...book, newItem];
+            return {
+                book: newArr
+            }
+        });
+    }
+
     render () {
     
         const {book} = this.state;
@@ -52,7 +68,8 @@ class App extends Component {
                 book={book} 
                 onDelete = {this.deleteItem}/>
     
-                <BooksAddForm />
+                <BooksAddForm 
+                onAdd = {this.onAddItem}/>
     
             </div>
     
