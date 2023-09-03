@@ -27,7 +27,7 @@ class BooksListItem extends Component{
 
     render () {
 
-        const {titleName, price} = this.props;
+        const {titleName, price, onDelete} = this.props;
         const {increase, like} = this.state;
 
         let classNames = 'list-group-item d-flex justify-content-beetwen';
@@ -59,7 +59,8 @@ class BooksListItem extends Component{
                 </button>
 
                 <button type="button"
-                    className="btn-trash btn-sm">
+                    className="btn-trash btn-sm"
+                    onClick={onDelete}>
                     <i className="fas fa-trash"></i>
                 </button>
 
