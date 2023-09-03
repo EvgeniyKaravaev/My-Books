@@ -16,11 +16,11 @@ class App extends Component {
         this.state = {
 
             book: [
-                { titleName: "Сказки А.С.Пушкина", price: 150, increase: true, like: true, id: 1},
-                { titleName: "Сказки Братьев Гримм", price: 450, increase: false, like: true, id: 2},
-                { titleName: "Русские народные сказки", price: 100, increase: true, like: true, id: 3},
-                { titleName: "Азбука животных", price: 50, increase: true, like: true, id: 4},
-        
+                { titleName: "Сказки А.С.Пушкина", price: 150, increase: true, like: true, id: 1 },
+                { titleName: "Сказки Братьев Гримм", price: 450, increase: false, like: false, id: 2 },
+                { titleName: "Русские народные сказки", price: 100, increase: true, like: false, id: 3 },
+                { titleName: "Азбука животных", price: 50, increase: true, like: false, id: 4 },
+
             ]
 
         }
@@ -29,8 +29,8 @@ class App extends Component {
 
     }
 
-    deleteItem = (id)=> { 
-        this.setState( ({book}) => {
+    deleteItem = (id) => {
+        this.setState(({ book }) => {
             return {
                 book: book.filter(item => item.id !== id)
             }
@@ -41,12 +41,12 @@ class App extends Component {
     onAddItem = (titleName, price) => {
         const newItem = {
             id: this.maxId++,
-            titleName, 
+            titleName,
             price,
             increase: false,
             like: false
         }
-        this.setState(({book}) => {
+        this.setState(({ book }) => {
             const newArr = [...book, newItem];
             return {
                 book: newArr
@@ -54,27 +54,47 @@ class App extends Component {
         });
     }
 
-    render () {
-    
-        const {book} = this.state;
+    onItemProp = (id, prop) => {
+
+        this.setState( ({book}) => ({
+            book: book.map(item => {
+                if(item.id === id){
+                    return {...item, [prop]: !item[prop]}
+                }
+
+                return item;
+            })
+        }))
+
+    }
+
+    render() {
+
+        const books = this.state.book.length;
+
+        const increased = this.state.book.filter(item => item.increase).length;
+
+        const { book } = this.state;
         return (
             <div className="app">
-                <AppInfo />
-    
+                <AppInfo books = { books } increased = { increased }/>
+
                 <div className='search-panel'>
                     <SearchPanel />
                     <AppFilter />
                 </div>
-    
-                <BooksList 
-                book={book} 
-                onDelete = {this.deleteItem}/>
-    
-                <BooksAddForm 
-                onAdd = {this.onAddItem}/>
-    
+
+                <BooksList
+                    book={book}
+                    onDelete={this.deleteItem}
+                    onItemProp={this.onItemProp}
+                    />
+
+                <BooksAddForm
+                    onAdd={this.onAddItem} />
+
             </div>
-    
+
         );
     }
 

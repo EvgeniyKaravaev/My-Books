@@ -1,51 +1,26 @@
-import { Component } from 'react';
 
 import './books-list-item.css'
 
-class BooksListItem extends Component{
+const BooksListItem = (props) => {
 
-    constructor (props) {
-        super(props);
+    const { titleName, price, onDelete, onItemProp, increase, like } = props;
 
-        this.state = {
-            increase: false,
-            like: false
-        }
-    }
+    let classNames = 'list-group-item d-flex justify-content-beetwen';
 
-    onIncrease = () => {
-        this.setState( ({increase}) => ({
-            increase: !increase
-        }) )
-    }
-
-    onLike = () => {
-     this.setState( ({like}) => ({
-        like: !like
-     }))   
-    }
-
-    render () {
-
-        const {titleName, price, onDelete} = this.props;
-        const {increase, like} = this.state;
-
-        let classNames = 'list-group-item d-flex justify-content-beetwen';
-
-    if (increase){
+    if (increase) {
         classNames += ' increase';
     }
 
-    if(like) {
+    if (like) {
         classNames += ' like';
-    } 
+    }
 
     return (
 
-        <li className = {classNames}>
+        <li className={classNames}>
 
             <span className="list-group-item-label"
-            onClick={this.onLike}>
+                onClick={onItemProp} data-toggle = "like">
                 {titleName}</span>
 
             <input type="text" className="list-group-item-input" defaultValue={price + 'P'} />
@@ -54,7 +29,7 @@ class BooksListItem extends Component{
 
                 <button type="button"
                     className="btn-cookie btn-sm"
-                    onClick={this.onIncrease}>
+                    onClick={onItemProp} data-toggle = "increase">
                     <i className="fas fa-cookie"></i>
                 </button>
 
@@ -71,7 +46,7 @@ class BooksListItem extends Component{
         </li>
     );
 
-    }
 }
+
 
 export default BooksListItem;

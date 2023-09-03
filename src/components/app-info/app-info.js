@@ -1,6 +1,8 @@
 import './app-info.css';
 
-const AppInfo = () => {
+const AppInfo = (props) => {
+
+    const {books, increased} = props;
 
     return (
 
@@ -8,9 +10,9 @@ const AppInfo = () => {
 
             <h1>Учет книг в книжном магазине</h1>
 
-            <h2>Общее число книг: </h2>
+            <h2>Общее число книг: {books}</h2>
 
-            <h3>Вами выбрано книг(количество):</h3>
+            <h3>Вами выбрано книг(количество): {increased}</h3>
 
         </div>
     );
