@@ -21,7 +21,9 @@ class App extends Component {
                 { titleName: "Русские народные сказки", price: 100, increase: true, like: false, id: 3 },
                 { titleName: "Азбука животных", price: 50, increase: true, like: false, id: 4 },
 
-            ]
+            ],
+
+            searchBook: ''
 
         }
 
@@ -68,24 +70,43 @@ class App extends Component {
 
     }
 
+    searchBooks = (items, searchBook) => {
+
+        if (searchBook.length === 0) {
+            return items
+        }
+
+        return items.filter(item => {
+            return item.titleName.indexOf(searchBook) > -1;
+        })
+
+    }
+
+    onUpdateSearch = (searchBook) => {
+        this.setState({searchBook})
+    }
+
     render() {
+
+        const {book, searchBook} = this.state;
 
         const books = this.state.book.length;
 
         const increased = this.state.book.filter(item => item.increase).length;
 
-        const { book } = this.state;
+        const visibleBooks = this.searchBooks(book, searchBook);
+
         return (
             <div className="app">
                 <AppInfo books = { books } increased = { increased }/>
 
                 <div className='search-panel'>
-                    <SearchPanel />
+                    <SearchPanel onUpdateSearch = {this.onUpdateSearch}/>
                     <AppFilter />
                 </div>
 
                 <BooksList
-                    book={book}
+                    book={visibleBooks}
                     onDelete={this.deleteItem}
                     onItemProp={this.onItemProp}
                     />
