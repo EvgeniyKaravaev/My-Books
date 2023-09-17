@@ -19,11 +19,13 @@ class App extends Component {
                 { titleName: "Сказки А.С.Пушкина", price: 150, increase: true, like: true, id: 1 },
                 { titleName: "Сказки Братьев Гримм", price: 450, increase: false, like: false, id: 2 },
                 { titleName: "Русские народные сказки", price: 100, increase: true, like: false, id: 3 },
-                { titleName: "Азбука животных", price: 50, increase: true, like: false, id: 4 },
+                { titleName: "Азбука животных", price: 5220, increase: true, like: false, id: 4 },
 
             ],
 
-            searchBook: ''
+            searchBook: '',
+
+            filterBook: 'all'
 
         }
 
@@ -86,15 +88,30 @@ class App extends Component {
         this.setState({searchBook})
     }
 
+    filterBooks = (items, filterBook) => {
+        switch (filterBook) {
+            case 'like':
+                return items.filter(item => item.like);
+                case 'priceThen1000':
+                    return items.filter(item => item.price > 1000);
+                    default:
+                         return items;
+        }
+    }
+
+    onFilterSelect = (filterBook) => {
+        this.setState({filterBook});
+    }
+
     render() {
 
-        const {book, searchBook} = this.state;
+        const {book, searchBook, filterBook} = this.state;
 
         const books = this.state.book.length;
 
         const increased = this.state.book.filter(item => item.increase).length;
 
-        const visibleBooks = this.searchBooks(book, searchBook);
+        const visibleBooks = this.filterBooks(this.searchBooks(book, searchBook), filterBook);
 
         return (
             <div className="app">
@@ -102,7 +119,7 @@ class App extends Component {
 
                 <div className='search-panel'>
                     <SearchPanel onUpdateSearch = {this.onUpdateSearch}/>
-                    <AppFilter />
+                    <AppFilter filterBook = {filterBook} onFilterSelect = {this.onFilterSelect}/>
                 </div>
 
                 <BooksList
